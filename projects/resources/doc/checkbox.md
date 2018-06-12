@@ -1,25 +1,17 @@
-# ngx-form-toggle
+# ngx-form-checkbox
 
 How to use:
 -------------
 ```html
-<!-- Checkbox style -->
-<ngx-form-toggle name="allowAd"
-                 label="I agree to receive ad email!"
-                 required="true"
-                 [(ngModel)]="data.allowAd"></ngx-form-toggle>
+<ngx-form-checkbox name="skill"
+                   label="Skills *"
+                   required="true"
+                   multiple="true"
+                   [options]="listSkill"
+                   [(ngModel)]="data.skill"></ngx-form-checkbox>
 ```
 
-```html
-<!-- Toggle style -->
-<ngx-form-toggle name="allowAd"
-                 label="I agree to receive ad email!"
-                 required="true"
-                 type="toggle"
-                 [(ngModel)]="data.allowAd"></ngx-form-toggle>
-```
-
-### Attribute
+### Attributes
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
 name | string | ''
@@ -33,4 +25,3 @@ requiredErrorMessage | string | 'This field is required.' | Message display when
 textKey | string | 'text' | Attribute of all texts of options.
 valueKey | string | '' | Attribute of output value. If empty, the output will be 1 option.
 options | Array<any> | [] | List all options
-type | string | 'checkbox' | Style of input: 'checkbox' or 'toggle'

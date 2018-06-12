@@ -1,18 +1,25 @@
-# ngx-form-select
+# ngx-form-toggle
 
 How to use:
 -------------
 ```html
-<ngx-form-select name="gender"
-                 label="Gender *"
-                 placeholder="Select your gender"
+<!-- Checkbox style -->
+<ngx-form-toggle name="allowAd"
+                 label="I agree to receive ad email!"
                  required="true"
-                 valueKey="value"
-                 [options]="listGender"
-                 [(ngModel)]="data.gender"></ngx-form-select>
+                 [(ngModel)]="data.allowAd"></ngx-form-toggle>
 ```
 
-### Attribute
+```html
+<!-- Toggle style -->
+<ngx-form-toggle name="allowAd"
+                 label="I agree to receive ad email!"
+                 required="true"
+                 type="toggle"
+                 [(ngModel)]="data.allowAd"></ngx-form-toggle>
+```
+
+### Attributes
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
 name | string | ''
@@ -26,4 +33,4 @@ requiredErrorMessage | string | 'This field is required.' | Message display when
 textKey | string | 'text' | Attribute of all texts of options.
 valueKey | string | '' | Attribute of output value. If empty, the output will be 1 option.
 options | Array<any> | [] | List all options
-multiple | boolean | false
+type | string | 'checkbox' | Style of input: 'checkbox' or 'toggle'

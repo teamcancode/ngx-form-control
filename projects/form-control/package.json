@@ -1,6 +1,6 @@
 {
   "name": "ngx-form-control",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",

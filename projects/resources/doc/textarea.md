@@ -9,7 +9,7 @@ How to use:
                    [(ngModel)]="data.description"></ngx-form-textarea>
 ```
 
-### Attribute
+### Attributes
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
 name | string | ''

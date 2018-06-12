@@ -31,7 +31,7 @@ How to use:
                 [(ngModel)]="data.repeatPassword"></ngx-form-input>
 ```
 
-### Attribute
+### Attributes
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
 name | string | ''

@@ -1,18 +1,17 @@
-# ngx-form-select2
+# ngx-form-radio
 
 How to use:
 -------------
 ```html
-<ngx-form-select2 name="gender"
-                  label="Gender *"
-                  placeholder="Select your gender"
-                  required="true"
-                  valueKey="value"
-                  [options]="listGender"
-                  [(ngModel)]="data.gender"></ngx-form-select2>
+<ngx-form-radio name="gender"
+                label="Gender *"
+                required="true"
+                valueKey="value"
+                [options]="listGender"
+                [(ngModel)]="data.gender"></ngx-form-radio>
 ```
 
-### Attribute
+### Attributes
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
 name | string | ''
@@ -26,4 +25,3 @@ requiredErrorMessage | string | 'This field is required.' | Message display when
 textKey | string | 'text' | Attribute of all texts of options.
 valueKey | string | '' | Attribute of output value. If empty, the output will be 1 option.
 options | Array<any> | [] | List all options
-multiple | boolean | false
