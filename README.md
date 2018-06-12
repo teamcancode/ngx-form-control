@@ -1,27 +1,157 @@
-# NgxFormControl
+# Ngx Form Control
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This module is used for [Angular 6](https://angular.io/).  
+This module help you to quickly generate bootstrap controls.   
 
-## Development server
+How to use:
+-------------
+### Installation:
+```html
+npm i ngx-form-controls
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Import library
+Edit `.angular.json`
+```json
+{
+  "projects": {
+    "<your-app>": {
+      ...
+      "architect": {
+        "build": {
+          ...
+          "options": {
+            ...
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/select2/dist/css/select2.min.css",
+              ...
+            ],
+            ...
+          },
+          ...
+        }
+      }
+    },
+    ...
+  }
+}
+```
 
-## Code scaffolding
+### Import module:
+Edit in `src/app/app.module.ts`:
+```typescript
+//...
+import { FormsModule } from '@angular/forms';
+import { FormControlModule } from 'ngx-form-control';
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+@NgModule({
+  //...
+  imports: [
+    //...
+    FormsModule,
+    FormControlModule
+  ],
+  //...
+})
+//...
+```
 
-## Build
+And call in component:
+### Input
+```html
+<!-- Email field -->
+<ngx-form-input name="email"
+                label="Email *"
+                placeholder="Type your email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                required="true"
+                [(ngModel)]="data.email"></ngx-form-input>
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```html
+<!-- Password field -->
+<ngx-form-input name="password"
+                label="Password *"
+                type="password"
+                placeholder="Type your password"
+                required="true"
+                minlength="3"
+                [(ngModel)]="data.password"></ngx-form-input>
 
-## Running unit tests
+<ngx-form-input name="password"
+                label="Repeat password *"
+                type="password"
+                placeholder="Type your password again"
+                [match]="data.password"
+                required="true"
+                [(ngModel)]="data.repeatPassword"></ngx-form-input>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Textarea
+```html
+<ngx-form-textarea name="description"
+                   label="Description"
+                   placeholder="Type your description"
+                   [(ngModel)]="data.description"></ngx-form-textarea>
+```
 
-## Running end-to-end tests
+### Select
+```html
+<ngx-form-select name="gender"
+                 label="Gender *"
+                 placeholder="Select your gender"
+                 required="true"
+                 valueKey="value"
+                 [options]="listGender"
+                 [(ngModel)]="data.gender"></ngx-form-select>
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Select2
+```html
+<ngx-form-select2 name="gender"
+                  label="Gender *"
+                  placeholder="Select your gender"
+                  required="true"
+                  valueKey="value"
+                  [options]="listGender"
+                  [(ngModel)]="data.gender"></ngx-form-select2>
+```
 
-## Further help
+### List Radio
+```html
+<ngx-form-radio name="gender"
+                label="Gender *"
+                required="true"
+                valueKey="value"
+                [options]="listGender"
+                [(ngModel)]="data.gender"></ngx-form-radio>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### List Checkbox
+```html
+<ngx-form-checkbox name="skill"
+                   label="Skills *"
+                   required="true"
+                   multiple="true"
+                   [options]="listSkill"
+                   [(ngModel)]="data.skill"></ngx-form-checkbox>
+```
+
+### Toggle
+```html
+<!-- Checkbox style -->
+<ngx-form-toggle name="allowAd"
+                 label="I agree to receive ad email!"
+                 required="true"
+                 [(ngModel)]="data.allowAd"></ngx-form-toggle>
+```
+
+```html
+<!-- Toggle style -->
+<ngx-form-toggle name="allowAd"
+                 label="I agree to receive ad email!"
+                 required="true"
+                 type="toggle"
+                 [(ngModel)]="data.allowAd"></ngx-form-toggle>
+```
