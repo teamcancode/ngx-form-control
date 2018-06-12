@@ -31,10 +31,7 @@
               "node_modules/select2/dist/css/select2.min.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/select2/dist/js/select2.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

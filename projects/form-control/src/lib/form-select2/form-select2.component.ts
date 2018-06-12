@@ -1,8 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlComponent } from '../../utils/base-control.component';
+import * as jQuery from 'jquery';
+import 'select2';
 
-declare const $;
+const $ = jQuery;
 
 @Component({
   selector: 'ngx-form-select2',
@@ -186,7 +188,7 @@ export class FormSelect2Component extends BaseControlComponent implements OnInit
   private updateSelectedIndexes() {
     const value = $(this.customSelectElement.nativeElement).val();
 
-    if ('string' === typeof value) {
+    if ('string' === typeof value || 'number' === typeof value) {
       this._selectedIndexes = [+value];
     } else {
       this._selectedIndexes = value ? value.map(item => +item) : [];
