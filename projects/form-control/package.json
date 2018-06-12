@@ -1,6 +1,24 @@
 {
   "name": "ngx-form-control",
-  "version": "0.0.6",
+  "version": "0.0.8",
+  "description": "Form controls for angular 6",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamcancode/ngx-form-control"
+  },
+  "keywords": [
+    "Ngx",
+    "Angular 6",
+    "Team Can Code",
+    "ngx-form-control",
+    "ngx form control"
+  ],
+  "author": "TeamCanCode <teamcancode@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teamcancode/ngx-form-control/issues"
+  },
+  "homepage": "https://github.com/teamcancode/ngx-form-control",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
