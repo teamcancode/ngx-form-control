@@ -4,7 +4,7 @@
   "dependencies": {
     "jquery": "^3.3.1",
     "bootstrap": "^4.1.1",
-    "select2": "^4.0.6-rc.1",
+    "select2": "^4.0.6-rc.1"
   },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
