@@ -1,0 +1,14 @@
+<label *ngIf="label" [for]="id">{{label}}</label>
+
+<div class="form-control is-invalid" [ngClass]="{'is-invalid': invalid, 'is-valid': valid}">
+  <!--suppress HtmlFormInputWithoutLabel -->
+  <select [id]="id" #customSelectElement></select>
+</div>
+
+<div class="valid-feedback" *ngIf="valid && validMessage">{{validMessage}}</div>
+
+<div class="invalid-feedback" *ngIf="invalid">
+  <span *ngFor="let message of errorMessages; let last = last;">
+    {{message}}<br *ngIf="!last">
+  </span>
+</div>

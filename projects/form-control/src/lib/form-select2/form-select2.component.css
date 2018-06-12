@@ -1,0 +1,61 @@
+:host .form-control {
+  padding: 0;
+}
+
+:host .form-control /deep/ .select2-container {
+  width: 100% !important;
+}
+
+:host .form-control /deep/ .select2-container .select2-selection--single {
+  height: auto;
+}
+
+:host .form-control /deep/ .select2-container--default .select2-selection--single,
+:host .form-control /deep/ .select2-container--default .select2-selection--multiple,
+:host .form-control /deep/ .select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: none;
+  outline: none !important;
+}
+
+:host .form-control /deep/ .select2-container--default .select2-selection--single:focus,
+:host .form-control /deep/ .select2-container--default .select2-selection--multiple:focus {
+  border-color: #80bdff;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+  -moz-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+:host .form-control.is-invalid /deep/ .select2-container--default .select2-selection--single:focus,
+:host .form-control.is-invalid /deep/ .select2-container--default .select2-selection--multiple:focus {
+  border-color: #dc3545;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, .25);
+  -moz-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, .25);
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, .25);
+}
+
+:host .form-control.is-valid /deep/ .select2-container--default .select2-selection--single:focus,
+:host .form-control.is-valid /deep/ .select2-container--default .select2-selection--multiple:focus {
+  border-color: #28a745;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, .25);
+  -moz-box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, .25);
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, .25);
+}
+
+:host .form-control /deep/ .select2-container--default .select2-selection--single .select2-selection__rendered {
+  min-height: 40px;
+  line-height: 25px;
+  padding: .375rem 25px .375rem .75rem;
+}
+
+:host .form-control /deep/ .select2-container .select2-selection--multiple {
+  min-height: 40px;
+  padding: .375rem .75rem;
+}
+
+:host .form-control /deep/ .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+  padding: 0;
+}
+
+:host .form-control /deep/ .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 38px;
+}

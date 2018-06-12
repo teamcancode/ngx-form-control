@@ -1,0 +1,28 @@
+<label *ngIf="label" [for]="id">{{label}}</label>
+
+<div #listRadioElement>
+  <div class="custom-control custom-checkbox" *ngFor="let option of innerOptions; let index = index;">
+    <input class="custom-control-input"
+           [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+           type="checkbox"
+           [id]="id + '-' + index"
+           [name]="id"
+           (click)="toggle(index, $event)"
+           title="">
+    <label class="custom-control-label" [for]="id + '-' + index">{{option.text()}}</label>
+  </div>
+</div>
+
+<ng-container *ngIf="valid && validMessage">
+  <div class="custom-control-input is-valid"></div>
+  <div class="valid-feedback">{{validMessage}}</div>
+</ng-container>
+
+<ng-container *ngIf="invalid">
+  <div class="custom-control-input is-invalid"></div>
+  <div class="invalid-feedback">
+    <span *ngFor="let message of errorMessages; let last = last;">
+      {{message}}<br *ngIf="!last">
+    </span>
+  </div>
+</ng-container>

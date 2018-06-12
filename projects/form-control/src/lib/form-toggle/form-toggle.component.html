@@ -1,0 +1,33 @@
+<div class="custom-checkbox" [ngClass]="{'custom-control': isCheckboxType}">
+  <ng-container *ngIf="isCheckboxType">
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <input class="custom-control-input"
+           [title]="title"
+           [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+           type="checkbox"
+           [id]="id"
+           [required]="required"
+           [(ngModel)]="value">
+    <label class="custom-control-label" [for]="id">{{label}}</label>
+  </ng-container>
+
+  <ng-container *ngIf="isToggleType">
+    <input class="custom-control-input tgl tgl-light"
+           [title]="title"
+           [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+           type="checkbox"
+           [id]="id"
+           [required]="required"
+           [(ngModel)]="value">
+    <label class="tgl-btn" [for]="id"></label>
+    <label class="tgl-label" [for]="id" *ngIf="label">{{label}}</label>
+  </ng-container>
+
+  <div class="valid-feedback" *ngIf="valid && validMessage">{{validMessage}}</div>
+
+  <div class="invalid-feedback" *ngIf="errorMessages && errorMessages.length">
+    <span *ngFor="let message of errorMessages; let last = last;">
+      {{message}}<br *ngIf="!last">
+    </span>
+  </div>
+</div>

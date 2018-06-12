@@ -1,0 +1,26 @@
+<label [for]="id">{{label}}</label>
+
+<!--suppress HtmlFormInputWithoutLabel -->
+<input class="form-control"
+       [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+       [type]="type"
+       [id]="id"
+       [required]="required"
+       [disabled]="disabled"
+       [readonly]="readonly"
+       [minlength]="minlength"
+       [maxlength]="maxlength"
+       [placeholder]="placeholder"
+       [title]="title"
+       [pattern]="pattern"
+       [(ngModel)]="value"
+       (input)="triggerChange()"
+       #customInput="ngModel">
+
+<div class="valid-feedback" *ngIf="valid && validMessage">{{validMessage}}</div>
+
+<div class="invalid-feedback" *ngIf="invalid">
+  <span *ngFor="let message of errorMessages; let last = last;">
+    {{message}}<br *ngIf="!last">
+  </span>
+</div>
