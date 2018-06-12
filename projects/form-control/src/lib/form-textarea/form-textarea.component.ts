@@ -19,7 +19,6 @@ export class FormTextareaComponent extends BaseControlComponent {
   @Input() maxlength: number;
   @Input() trimResult = true;
   @Input() minLengthErrorMessage = 'Value is too short.';
-  @Input() requiredErrorMessage = 'This field is required.';
   @ViewChild('customTextarea') customTextarea: NgModel;
   private _innerValue: string;
 
