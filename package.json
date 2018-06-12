@@ -1,13 +1,17 @@
 {
   "name": "ngx-form-control",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build_lib": "ng build --prod form-control",
+    "npm_pack": "cd dist/form-control && npm pack",
+    "package": "npm run build_lib && npm run npm_pack",
+    "publish": "npm run build_lib && npm publish dist/form-control"
   },
   "private": true,
   "dependencies": {
