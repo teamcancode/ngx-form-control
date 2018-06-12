@@ -58,7 +58,7 @@ import { FormControlModule } from 'ngx-form-control';
 ```
 
 And call in component:
-### Input
+### Input ([Document](https://github.com/teamcancode/ngx-form-control/blob/master/resources/doc/input.md))
 ```html
 <!-- Email field -->
 <ngx-form-input name="email"
@@ -88,7 +88,7 @@ And call in component:
                 [(ngModel)]="data.repeatPassword"></ngx-form-input>
 ```
 
-### Textarea
+### Textarea ([Document](https://github.com/teamcancode/ngx-form-control/blob/master/resources/doc/textarea.md))
 ```html
 <ngx-form-textarea name="description"
                    label="Description"
@@ -96,7 +96,7 @@ And call in component:
                    [(ngModel)]="data.description"></ngx-form-textarea>
 ```
 
-### Select
+### Select ([Document](https://github.com/teamcancode/ngx-form-control/blob/master/resources/doc/select.md))
 ```html
 <ngx-form-select name="gender"
                  label="Gender *"
@@ -107,7 +107,7 @@ And call in component:
                  [(ngModel)]="data.gender"></ngx-form-select>
 ```
 
-### Select2
+### Select2 ([Document](https://github.com/teamcancode/ngx-form-control/blob/master/resources/doc/select2.md))
 ```html
 <ngx-form-select2 name="gender"
                   label="Gender *"
@@ -118,7 +118,7 @@ And call in component:
                   [(ngModel)]="data.gender"></ngx-form-select2>
 ```
 
-### List Radio
+### List Radio ([Document](https://github.com/teamcancode/ngx-form-control/blob/master/resources/doc/radio.md))
 ```html
 <ngx-form-radio name="gender"
                 label="Gender *"
@@ -128,7 +128,7 @@ And call in component:
                 [(ngModel)]="data.gender"></ngx-form-radio>
 ```
 
-### List Checkbox
+### List Checkbox ([Document](https://github.com/teamcancode/ngx-form-control/blob/master/resources/doc/checkbox.md))
 ```html
 <ngx-form-checkbox name="skill"
                    label="Skills *"
@@ -138,7 +138,7 @@ And call in component:
                    [(ngModel)]="data.skill"></ngx-form-checkbox>
 ```
 
-### Toggle
+### Toggle ([Document](https://github.com/teamcancode/ngx-form-control/blob/master/resources/doc/toggle.md))
 ```html
 <!-- Checkbox style -->
 <ngx-form-toggle name="allowAd"
