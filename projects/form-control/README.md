@@ -7,7 +7,7 @@ How to use:
 -------------
 ### Installation:
 ```html
-npm i ngx-form-controls
+npm i ngx-form-control
 ```
 
 ## Import library
