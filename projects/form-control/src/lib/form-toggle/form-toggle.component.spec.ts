@@ -8,9 +8,9 @@ describe('FormToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-             declarations: [FormToggleComponent]
-           })
-           .compileComponents();
+      declarations: [FormToggleComponent]
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

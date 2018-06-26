@@ -1,6 +1,6 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors} from '@angular/forms';
-import {BaseListControlComponent} from '../../utils/base-list-control.component';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors } from '@angular/forms';
+import { BaseListControlComponent } from '../../utils/base-list-control.component';
 
 @Component({
   selector: 'ngx-form-select',
@@ -16,12 +16,12 @@ export class FormSelectComponent extends BaseListControlComponent {
   @ViewChild('customSelect') customSelect: NgModel;
   @ViewChild('customSelectElement') customSelectElement: ElementRef;
 
-  @Input() set multiple(value: boolean) {
-    this._multiple = value;
-  }
-
   get multiple() {
     return this._multiple;
+  }
+
+  @Input() set multiple(value: boolean) {
+    this._multiple = value;
   }
 
   get isEmpty(): boolean {

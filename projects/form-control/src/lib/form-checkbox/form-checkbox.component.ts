@@ -1,6 +1,6 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
-import {BaseListControlComponent} from '../../utils/base-list-control.component';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
+import { BaseListControlComponent } from '../../utils/base-list-control.component';
 import * as jQuery from 'jquery';
 
 const $ = jQuery;

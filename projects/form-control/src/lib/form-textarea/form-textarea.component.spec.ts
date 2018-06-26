@@ -8,9 +8,9 @@ describe('FormTextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-             declarations: [FormTextareaComponent]
-           })
-           .compileComponents();
+      declarations: [FormTextareaComponent]
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

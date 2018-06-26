@@ -8,9 +8,9 @@ describe('FormInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-             declarations: [FormInputComponent]
-           })
-           .compileComponents();
+      declarations: [FormInputComponent]
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

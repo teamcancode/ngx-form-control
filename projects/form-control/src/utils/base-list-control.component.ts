@@ -1,40 +1,45 @@
-import {BaseControlComponent} from './base-control.component';
-import {Input} from '@angular/core';
+import { BaseControlComponent } from './base-control.component';
+import { Input } from '@angular/core';
 
 export abstract class BaseListControlComponent extends BaseControlComponent {
 
   protected _multiple;
   protected _textKey;
-  protected _valueKey;
-  protected _comparedKey;
-  protected _options: Array<any> = [];
-  protected _selectOptions: Array<{ id, text, value, comparedValue }> = [];
-  protected _selectedIndexes = [];
 
   @Input() set textKey(value: string) {
     this._textKey = value;
     this.initOptions();
   }
 
+  protected _valueKey;
+
   @Input() set valueKey(value: string) {
     this._valueKey = value;
     this.initOptions();
   }
+
+  protected _comparedKey;
 
   @Input() set comparedKey(value: string) {
     this._comparedKey = value;
     this.initOptions();
   }
 
+  protected _options: Array<any> = [];
+
   @Input() set options(options: Array<any>) {
     this._options = options;
     this.initOptions();
   }
 
+  protected _selectOptions: Array<{ id, text, value, comparedValue }> = [];
+
   // noinspection JSUnusedGlobalSymbols
   public get selectOptions() {
     return this._selectOptions;
   }
+
+  protected _selectedIndexes = [];
 
   public get selectedIndexes(): Array<number> {
     return this._selectedIndexes;

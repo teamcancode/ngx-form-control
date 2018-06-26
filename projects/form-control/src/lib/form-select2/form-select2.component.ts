@@ -1,8 +1,8 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as jQuery from 'jquery';
 import 'select2';
-import {BaseListControlComponent} from '../../utils/base-list-control.component';
+import { BaseListControlComponent } from '../../utils/base-list-control.component';
 
 const $ = jQuery;
 
@@ -17,25 +17,27 @@ const $ = jQuery;
 })
 export class FormSelect2Component extends BaseListControlComponent implements OnInit {
 
-  private _placeholder: string;
-  private _required: boolean;
-  private _disabled: boolean;
+  @ViewChild('customSelectElement') customSelectElement: ElementRef;
   private _isTouched = false;
 
-  @ViewChild('customSelectElement') customSelectElement: ElementRef;
+  private _placeholder: string;
+
+  @Input() set placeholder(value: string) {
+    this._placeholder = value;
+    this.updateSelect2Options();
+  }
+
+  private _required: boolean;
 
   @Input() set required(value: boolean) {
     this._required = value;
     this.updateSelect2Options();
   }
 
+  private _disabled: boolean;
+
   @Input() set disabled(value: boolean) {
     this._disabled = value;
-    this.updateSelect2Options();
-  }
-
-  @Input() set placeholder(value: string) {
-    this._placeholder = value;
     this.updateSelect2Options();
   }
 
@@ -119,6 +121,10 @@ export class FormSelect2Component extends BaseListControlComponent implements On
     this._isTouched = false;
   }
 
+  protected afterInitOptions() {
+    this.updateSelect2Options();
+  }
+
   private selectValues(values) {
     this._selectedIndexes = [];
 
@@ -192,10 +198,6 @@ export class FormSelect2Component extends BaseListControlComponent implements On
     $(this.customSelectElement.nativeElement).on('select2:close', () => {
       this._isTouched = true;
     });
-  }
-
-  protected afterInitOptions() {
-    this.updateSelect2Options();
   }
 
 }
