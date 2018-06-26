@@ -25,5 +25,6 @@ validMessage | string | '' | Message display when current field is touched & val
 requiredErrorMessage | string | 'This field is required.' | Message display when current field is required & empty 
 textKey | string | 'text' | Attribute of all texts of options.
 valueKey | string | '' | Attribute of output value. If empty, the output will be 1 option.
+comparedKey | string | ''
 options | Array<any> | [] | List all options
 multiple | boolean | false
