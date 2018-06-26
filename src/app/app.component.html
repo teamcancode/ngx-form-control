@@ -42,7 +42,8 @@
                        label="Gender *"
                        placeholder="Select your gender"
                        required="true"
-                       valueKey="value"
+                       [valueKey]="'value'"
+                       [comparedKey]="'value'"
                        [options]="listGender"
                        [(ngModel)]="data.gender"></ngx-form-select>
     </div>
@@ -52,7 +53,8 @@
                         label="Gender *"
                         placeholder="Select your gender"
                         required="true"
-                        valueKey="value"
+                        [valueKey]="'value'"
+                        [comparedKey]="'value'"
                         [options]="listGender"
                         [(ngModel)]="data.gender"></ngx-form-select2>
     </div>
@@ -61,7 +63,8 @@
       <ngx-form-radio name="gender"
                       label="Gender *"
                       required="true"
-                      valueKey="value"
+                      [valueKey]="'value'"
+                      [comparedKey]="'value'"
                       [options]="listGender"
                       [(ngModel)]="data.gender"></ngx-form-radio>
     </div>

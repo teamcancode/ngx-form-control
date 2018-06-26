@@ -12,7 +12,7 @@
         #customSelect="ngModel"
         #customSelectElement>
   <option value="-1" *ngIf="placeholder">{{placeholder}}</option>
-  <option *ngFor="let option of innerOptions; let index = index;" [value]="index">{{option.text()}}</option>
+  <option *ngFor="let option of selectOptions; let index = index;" [value]="index">{{option.text}}</option>
 </select>
 
 <div class="valid-feedback" *ngIf="valid && validMessage">{{validMessage}}</div>

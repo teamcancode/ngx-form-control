@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors } from '@angular/forms';
-import { BaseListControlComponent } from '../../utils/base-list-control.component';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors} from '@angular/forms';
+import {BaseListControlComponent} from '../../utils/base-list-control.component';
 
 @Component({
   selector: 'ngx-form-select',
@@ -13,21 +13,15 @@ import { BaseListControlComponent } from '../../utils/base-list-control.componen
 })
 export class FormSelectComponent extends BaseListControlComponent {
 
-  @Input() multiple = false;
-
   @ViewChild('customSelect') customSelect: NgModel;
   @ViewChild('customSelectElement') customSelectElement: ElementRef;
 
-  private _selectedIndexes = [-1];
-
-  get selectedIndexes(): Array<number> {
-    return this._selectedIndexes;
+  @Input() set multiple(value: boolean) {
+    this._multiple = value;
   }
 
-  // noinspection JSUnusedGlobalSymbols
-  set selectedIndexes(indexes: Array<number>) {
-    this._selectedIndexes = indexes && indexes.length ? indexes.map(index => +index) : [-1];
-    this.triggerChange();
+  get multiple() {
+    return this._multiple;
   }
 
   get isEmpty(): boolean {
@@ -41,11 +35,11 @@ export class FormSelectComponent extends BaseListControlComponent {
       return null;
     }
 
-    if (this.multiple) {
-      return this._selectedIndexes.map(index => this.innerOptions[index].value());
+    if (this._multiple) {
+      return this._selectedIndexes.map(index => this._selectOptions[index].value);
     } else {
       const index = this._selectedIndexes[0];
-      return this.innerOptions[index].value();
+      return this.selectOptions[index].value;
     }
   }
 

@@ -1,7 +1,7 @@
 <label *ngIf="label" [for]="id">{{label}}</label>
 
 <div #listRadioElement>
-  <div class="custom-control custom-checkbox" *ngFor="let option of innerOptions; let index = index;">
+  <div class="custom-control custom-checkbox" *ngFor="let option of selectOptions; let index = index;">
     <input class="custom-control-input"
            [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
            type="checkbox"
@@ -9,7 +9,7 @@
            [name]="id"
            (click)="toggle(index, $event)"
            title="">
-    <label class="custom-control-label" [for]="id + '-' + index">{{option.text()}}</label>
+    <label class="custom-control-label" [for]="id + '-' + index">{{option.text}}</label>
   </div>
 </div>
 

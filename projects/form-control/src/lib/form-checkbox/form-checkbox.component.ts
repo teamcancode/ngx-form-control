@@ -1,6 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { BaseListControlComponent } from '../../utils/base-list-control.component';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
+import {BaseListControlComponent} from '../../utils/base-list-control.component';
 import * as jQuery from 'jquery';
 
 const $ = jQuery;
@@ -18,7 +18,6 @@ export class FormCheckboxComponent extends BaseListControlComponent {
 
   @ViewChild('listRadioElement') listRadioElement: ElementRef;
 
-  private _selectedIndexes = [];
   private _isTouched = false;
 
   get isEmpty(): boolean {
@@ -26,7 +25,7 @@ export class FormCheckboxComponent extends BaseListControlComponent {
   }
 
   get value(): any {
-    return this.isEmpty ? null : this._selectedIndexes.map(index => this.innerOptions[index].value());
+    return this.isEmpty ? null : this._selectedIndexes.map(index => this._selectOptions[index].value);
   }
 
   get invalid(): boolean {
@@ -79,7 +78,7 @@ export class FormCheckboxComponent extends BaseListControlComponent {
     if (this.value) {
       this._selectedIndexes.map(index => {
         $(this.listRadioElement.nativeElement).find('.custom-control-input').eq(index)
-                                              .prop('checked', true);
+          .prop('checked', true);
       });
     }
   }

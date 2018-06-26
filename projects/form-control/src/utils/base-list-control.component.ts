@@ -1,38 +1,64 @@
-import { BaseControlComponent } from './base-control.component';
-import { Input } from '@angular/core';
+import {BaseControlComponent} from './base-control.component';
+import {Input} from '@angular/core';
 
 export abstract class BaseListControlComponent extends BaseControlComponent {
 
-  innerOptions: Array<{ text, value, json }> = [];
+  protected _multiple;
+  protected _textKey;
+  protected _valueKey;
+  protected _comparedKey;
+  protected _options: Array<any> = [];
+  protected _selectOptions: Array<{ id, text, value, comparedValue }> = [];
+  protected _selectedIndexes = [];
 
-  @Input() textKey = 'text';
-  @Input() valueKey = '';
+  @Input() set textKey(value: string) {
+    this._textKey = value;
+    this.initOptions();
+  }
+
+  @Input() set valueKey(value: string) {
+    this._valueKey = value;
+    this.initOptions();
+  }
+
+  @Input() set comparedKey(value: string) {
+    this._comparedKey = value;
+    this.initOptions();
+  }
 
   @Input() set options(options: Array<any>) {
-    const currentValue = this.value;
-    this.innerOptions = [];
+    this._options = options;
+    this.initOptions();
+  }
 
-    options.map((option) => {
-      const textFunc = () => 'string' === typeof option ? option : option[this.textKey || 'text'];
-      const valueFunc = () => 'string' === typeof option ? option : this.valueKey ? option[this.valueKey] : option;
+  // noinspection JSUnusedGlobalSymbols
+  public get selectOptions() {
+    return this._selectOptions;
+  }
 
-      this.innerOptions.push({
-        text: textFunc,
-        value: valueFunc,
-        json: () => JSON.stringify(valueFunc()),
-      });
-    });
+  public get selectedIndexes(): Array<number> {
+    return this._selectedIndexes;
+  }
 
-    if (currentValue) {
-      this.writeValue(currentValue);
-    }
+  public set selectedIndexes(indexes: Array<number>) {
+    this._selectedIndexes = indexes && indexes.length ? indexes.reduce((arr, value) => {
+      value = +value;
+
+      if (value > -1) {
+        arr.push(value);
+      }
+
+      return arr;
+    }, []) : [];
+
+    this.triggerChange();
   }
 
   protected findIndex(value): number {
-    const json = JSON.stringify(value);
+    const comparedValue = this.getComparedValue(value);
 
-    return this.innerOptions.findIndex((option: { text, value, json }) => {
-      return json === option.json();
+    return this._selectOptions.findIndex((option: { id, text, value, comparedValue }) => {
+      return comparedValue === option.comparedValue;
     });
   }
 
@@ -41,16 +67,70 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
       return [];
     }
 
-    const result: Array<number> = arrValue.reduce((arr, value) => {
+    return arrValue.reduce((arr, value) => {
       const index = this.findIndex(value);
+
       if (index > -1) {
         arr.push(index);
       }
 
       return arr;
     }, []);
+  }
 
-    return result && result.length ? result : [];
+  protected initOptions() {
+    this.beforeInitOptions();
+
+    this._options.map((option, index) => {
+      let text, value;
+
+      if ('string' === typeof option) {
+        text = option;
+        value = option;
+      } else {
+        text = option[this._textKey || 'text'];
+        value = this._valueKey ? option[this._valueKey] : option;
+      }
+
+      this._selectOptions.push({
+        id: index,
+        text: text,
+        value: value,
+        comparedValue: this.getComparedValue(option),
+      });
+    });
+
+    this.afterInitOptions();
+  }
+
+  protected beforeInitOptions() {
+  }
+
+  protected afterInitOptions() {
+  }
+
+  protected getComparedValue(option) {
+    if (!option) {
+      return '';
+    }
+
+    if ('string' === typeof option) {
+      return option;
+    }
+
+    let value;
+
+    if (this._comparedKey) {
+      value = option[this._comparedKey];
+    } else {
+      value = this._valueKey ? option[this._valueKey] : option;
+    }
+
+    if ('string' === typeof value) {
+      return value;
+    }
+
+    return JSON.stringify(value);
   }
 
 }

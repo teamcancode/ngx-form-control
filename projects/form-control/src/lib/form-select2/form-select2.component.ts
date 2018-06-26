@@ -1,8 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BaseControlComponent } from '../../utils/base-control.component';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import * as jQuery from 'jquery';
 import 'select2';
+import {BaseListControlComponent} from '../../utils/base-list-control.component';
 
 const $ = jQuery;
 
@@ -15,29 +15,14 @@ const $ = jQuery;
     {provide: NG_VALIDATORS, useExisting: FormSelect2Component, multi: true}
   ]
 })
-export class FormSelect2Component extends BaseControlComponent implements OnInit {
+export class FormSelect2Component extends BaseListControlComponent implements OnInit {
 
-  @ViewChild('customSelectElement') customSelectElement: ElementRef;
-  private _selectedIndexes = [];
-  private _select2Data: Array<{ id, text, value, json, initData }> = [];
-  private _multiple: boolean;
   private _placeholder: string;
   private _required: boolean;
   private _disabled: boolean;
-  private _textKey = 'text';
-  private _valueKey = '';
   private _isTouched = false;
 
-  @Input() set textKey(value: string) {
-    this._textKey = value;
-    this.initSelect2Data();
-    this.updateSelect2Options();
-  }
-
-  @Input() set valueKey(value: string) {
-    this._valueKey = value;
-    this.initSelect2Data();
-  }
+  @ViewChild('customSelectElement') customSelectElement: ElementRef;
 
   @Input() set required(value: boolean) {
     this._required = value;
@@ -59,27 +44,15 @@ export class FormSelect2Component extends BaseControlComponent implements OnInit
     this.updateSelect2Options();
   }
 
-  @Input() set options(options: Array<any>) {
-    const currentValue = this.value;
-    this._select2Data = [];
-
-    this.initSelect2Data(options);
-    this.updateSelect2Options();
-
-    if (currentValue) {
-      this.writeValue(currentValue);
-    }
-  }
-
   get value(): any {
     if (this._multiple) {
       if (!this._selectedIndexes || !this._selectedIndexes.length) {
         return null;
       }
 
-      return this._selectedIndexes.map(index => this._select2Data[index].value);
+      return this._selectedIndexes.map(index => this._selectOptions[index].value);
     } else {
-      return this._selectedIndexes.length ? this._select2Data[this._selectedIndexes[0]].value : null;
+      return this._selectedIndexes.length ? this._selectOptions[this._selectedIndexes[0]].value : null;
     }
   }
 
@@ -146,30 +119,6 @@ export class FormSelect2Component extends BaseControlComponent implements OnInit
     this._isTouched = false;
   }
 
-  private initSelect2Data(options: Array<any> = null) {
-    if (!options) {
-      options = this._select2Data.map((item) => item.initData);
-    }
-
-    options.map((option, index) => {
-      const text = 'string' === typeof option ? option : option[this._textKey || 'text'];
-      const value = 'string' === typeof option ? option : this._valueKey ? option[this._valueKey] : option;
-
-      this._select2Data.push({
-        id: index,
-        text: text,
-        initData: option,
-        value: value,
-        json: JSON.stringify(value),
-      });
-    });
-  }
-
-  private findIndex(value) {
-    const json = JSON.stringify(value);
-    return this._select2Data.findIndex(option => json === option.json);
-  }
-
   private selectValues(values) {
     this._selectedIndexes = [];
 
@@ -228,7 +177,7 @@ export class FormSelect2Component extends BaseControlComponent implements OnInit
       placeholder: this._placeholder,
       allowClear: !this._required,
       multiple: this._multiple,
-      data: this._select2Data,
+      data: this._selectOptions,
       disabled: this._disabled
     });
 
@@ -243,6 +192,10 @@ export class FormSelect2Component extends BaseControlComponent implements OnInit
     $(this.customSelectElement.nativeElement).on('select2:close', () => {
       this._isTouched = true;
     });
+  }
+
+  protected afterInitOptions() {
+    this.updateSelect2Options();
   }
 
 }

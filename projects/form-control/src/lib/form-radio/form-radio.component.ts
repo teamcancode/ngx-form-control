@@ -1,6 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { BaseListControlComponent } from '../../utils/base-list-control.component';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
+import {BaseListControlComponent} from '../../utils/base-list-control.component';
 import * as jQuery from 'jquery';
 
 const $ = jQuery;
@@ -17,15 +17,15 @@ const $ = jQuery;
 export class FormRadioComponent extends BaseListControlComponent {
 
   @ViewChild('listRadioElement') listRadioElement: ElementRef;
-  private _selectedIndex = -1;
+
   private _isTouched = false;
 
   get isEmpty(): boolean {
-    return this._selectedIndex < 0;
+    return !this._selectedIndexes || !this._selectedIndexes.length;
   }
 
   get value(): any {
-    return this.isEmpty ? null : this.innerOptions[this._selectedIndex].value();
+    return this.isEmpty ? null : this._selectOptions[this._selectedIndexes[0]].value;
   }
 
   get invalid(): boolean {
@@ -69,15 +69,15 @@ export class FormRadioComponent extends BaseListControlComponent {
       return;
     }
 
-    this._selectedIndex = this.findIndex(value);
+    this._selectedIndexes = this.findIndexes([value]);
 
     if (!this.listRadioElement || !this.listRadioElement.nativeElement) {
       return;
     }
 
     if (this.value) {
-      $(this.listRadioElement.nativeElement).find('.custom-control-input').eq(this._selectedIndex)
-                                            .prop('checked', true);
+      $(this.listRadioElement.nativeElement).find('.custom-control-input').eq(this._selectedIndexes[0])
+        .prop('checked', true);
     }
   }
 
@@ -97,10 +97,10 @@ export class FormRadioComponent extends BaseListControlComponent {
     const element = $(event.target);
     index = +index;
 
-    if (this.required || index !== this._selectedIndex) {
-      this._selectedIndex = +index;
+    if (this.required || index !== this._selectedIndexes[0]) {
+      this._selectedIndexes = [+index];
     } else {
-      this._selectedIndex = -1;
+      this._selectedIndexes = [];
       element.prop('checked', false);
     }
 
