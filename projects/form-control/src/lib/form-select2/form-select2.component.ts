@@ -54,7 +54,7 @@ export class FormSelect2Component extends BaseListControlComponent implements On
 
       return this._selectedIndexes.map(index => this._selectOptions[index].value);
     } else {
-      return this._selectedIndexes.length ? this._selectOptions[this._selectedIndexes[0]].value : null;
+      return this._selectedIndexes && this._selectedIndexes.length ? this._selectOptions[this._selectedIndexes[0]].value : null;
     }
   }
 
@@ -128,13 +128,15 @@ export class FormSelect2Component extends BaseListControlComponent implements On
   private selectValues(values) {
     this._selectedIndexes = [];
 
-    values.map((value) => {
-      const index = this.findIndex(value);
+    if (values && values.length) {
+      values.map((value) => {
+        const index = this.findIndex(value);
 
-      if (index > -1) {
-        this._selectedIndexes.push(index);
-      }
-    });
+        if (index > -1) {
+          this._selectedIndexes.push(index);
+        }
+      });
+    }
 
     $(this.customSelectElement.nativeElement).val(this._selectedIndexes);
     $(this.customSelectElement.nativeElement).trigger('change');
@@ -146,7 +148,7 @@ export class FormSelect2Component extends BaseListControlComponent implements On
     if ('string' === typeof value || 'number' === typeof value) {
       this._selectedIndexes = [+value];
     } else {
-      this._selectedIndexes = value ? value.map(item => +item) : [];
+      this._selectedIndexes = value && value.length ? value.map(item => +item) : [];
     }
 
     this.triggerChange();

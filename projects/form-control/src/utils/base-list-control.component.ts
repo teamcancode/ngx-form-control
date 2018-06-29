@@ -86,24 +86,26 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
   protected initOptions() {
     this.beforeInitOptions();
 
-    this._options.map((option, index) => {
-      let text, value;
+    if (this._options && this._options.length) {
+      this._options.map((option, index) => {
+        let text, value;
 
-      if ('string' === typeof option) {
-        text = option;
-        value = option;
-      } else {
-        text = option[this._textKey || 'text'];
-        value = this._valueKey ? option[this._valueKey] : option;
-      }
+        if ('string' === typeof option) {
+          text = option;
+          value = option;
+        } else {
+          text = option[this._textKey || 'text'];
+          value = this._valueKey ? option[this._valueKey] : option;
+        }
 
-      this._selectOptions.push({
-        id: index,
-        text: text,
-        value: value,
-        comparedValue: this.getComparedValue(option),
+        this._selectOptions.push({
+          id: index,
+          text: text,
+          value: value,
+          comparedValue: this.getComparedValue(option),
+        });
       });
-    });
+    }
 
     this.afterInitOptions();
   }
