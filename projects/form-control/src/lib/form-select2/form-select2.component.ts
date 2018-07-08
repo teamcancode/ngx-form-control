@@ -143,6 +143,7 @@ export class FormSelect2Component extends BaseListControlComponent implements On
   }
 
   private updateSelectedIndexes() {
+    const oldSelectedIndexes = JSON.stringify(this._selectedIndexes);
     const value = $(this.customSelectElement.nativeElement).val();
 
     if ('string' === typeof value || 'number' === typeof value) {
@@ -151,7 +152,11 @@ export class FormSelect2Component extends BaseListControlComponent implements On
       this._selectedIndexes = value && value.length ? value.map(item => +item) : [];
     }
 
-    this.triggerChange();
+    const newSelectedIndexes = JSON.stringify(this._selectedIndexes);
+
+    if (newSelectedIndexes !== oldSelectedIndexes) {
+      this.triggerChange();
+    }
   }
 
   private selectValue(value) {

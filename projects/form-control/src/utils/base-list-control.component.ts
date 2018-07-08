@@ -46,6 +46,8 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
   }
 
   public set selectedIndexes(indexes: Array<number>) {
+    const oldSelectedIndexes = JSON.stringify(this._selectedIndexes);
+
     this._selectedIndexes = indexes && indexes.length ? indexes.reduce((arr, value) => {
       value = +value;
 
@@ -56,7 +58,11 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
       return arr;
     }, []) : [];
 
-    this.triggerChange();
+    const newSelectedIndexes = JSON.stringify(this._selectedIndexes);
+
+    if (newSelectedIndexes !== oldSelectedIndexes) {
+      this.triggerChange();
+    }
   }
 
   protected findIndex(value): number {
