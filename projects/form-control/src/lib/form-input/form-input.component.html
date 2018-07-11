@@ -1,4 +1,4 @@
-<label [for]="id">{{label}}</label>
+<label *ngIf="label" [for]="id">{{label}}</label>
 
 <!--suppress HtmlFormInputWithoutLabel -->
 <input class="form-control"
