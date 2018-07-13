@@ -92,6 +92,9 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
   protected initOptions() {
     this.beforeInitOptions();
 
+    const oldValue = this.value;
+
+    this._selectOptions = [];
     if (this._options && this._options.length) {
       this._options.map((option, index) => {
         let text, value;
@@ -114,6 +117,14 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
     }
 
     this.afterInitOptions();
+
+    this.writeValue(oldValue);
+
+    const newValue = this.value;
+
+    if (JSON.stringify(oldValue) !== JSON.stringify(newValue)) {
+      this.triggerChange();
+    }
   }
 
   protected beforeInitOptions() {
@@ -145,5 +156,9 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
 
     return JSON.stringify(value);
   }
+
+  abstract get value();
+
+  abstract writeValue(value: any | Array<any>);
 
 }

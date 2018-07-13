@@ -183,6 +183,7 @@ export class FormSelect2Component extends BaseListControlComponent implements On
     }
 
     if ($(this.customSelectElement.nativeElement).hasClass('select2-hidden-accessible')) {
+      $(this.customSelectElement.nativeElement).select2().empty();
       $(this.customSelectElement.nativeElement).select2('destroy');
     }
 

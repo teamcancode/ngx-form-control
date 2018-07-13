@@ -76,9 +76,11 @@ export class FormCheckboxComponent extends BaseListControlComponent {
     }
 
     if (this.value) {
-      this._selectedIndexes.map(index => {
-        $(this.listRadioElement.nativeElement).find('.custom-control-input').eq(index)
-          .prop('checked', true);
+      setTimeout(() => {
+        const listCheckbox = $(this.listRadioElement.nativeElement).find('.custom-control-input');
+        this._selectedIndexes.map(index => {
+          listCheckbox.eq(index).prop('checked', true);
+        });
       });
     }
   }
