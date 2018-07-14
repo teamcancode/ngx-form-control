@@ -77,8 +77,10 @@ export class FormRadioComponent extends BaseListControlComponent {
     }
 
     if (this.value) {
-      const index = this._selectedIndexes[0];
-      listElement[index].checked = true;
+      setTimeout(() => {
+        const index = this._selectedIndexes[0];
+        listElement[index].checked = true;
+      });
     }
   }
 

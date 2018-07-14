@@ -1,9 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 import { BaseListControlComponent } from '../../utils/base-list-control.component';
-import * as jQuery from 'jquery';
-
-const $ = jQuery;
 
 @Component({
   selector: 'ngx-form-checkbox',
@@ -63,7 +60,11 @@ export class FormCheckboxComponent extends BaseListControlComponent {
   }
 
   writeValue(value: Array<any>): void {
-    $(this.listRadioElement.nativeElement).find('.custom-control-input').prop('checked', false);
+    const listElement = this.listRadioElement.nativeElement.querySelectorAll('.custom-control-input');
+
+    for (const element of listElement) {
+      element.checked = false;
+    }
 
     if (!value) {
       return;
@@ -77,9 +78,8 @@ export class FormCheckboxComponent extends BaseListControlComponent {
 
     if (this.value) {
       setTimeout(() => {
-        const listCheckbox = $(this.listRadioElement.nativeElement).find('.custom-control-input');
         this._selectedIndexes.map(index => {
-          listCheckbox.eq(index).prop('checked', true);
+          listElement[index].checked = true;
         });
       });
     }
@@ -98,8 +98,7 @@ export class FormCheckboxComponent extends BaseListControlComponent {
   // noinspection JSMethodCanBeStatic
   toggle(index, event) {
     this._isTouched = true;
-    const element = $(event.target);
-    const checked = element.prop('checked');
+    const checked = event.target.checked;
 
     index = +index;
 
