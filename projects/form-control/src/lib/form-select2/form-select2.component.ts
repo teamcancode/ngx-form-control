@@ -1,11 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as jQuery from 'jquery';
-import 'select2';
 import { BaseListControlComponent } from '../../utils/base-list-control.component';
 import { Common } from '../../utils/common';
 
-const $ = jQuery;
+declare const $;
 
 @Component({
   selector: 'ngx-form-select2',
