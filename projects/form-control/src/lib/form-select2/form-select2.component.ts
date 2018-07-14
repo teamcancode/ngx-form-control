@@ -3,6 +3,7 @@ import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as jQuery from 'jquery';
 import 'select2';
 import { BaseListControlComponent } from '../../utils/base-list-control.component';
+import { Common } from '../../utils/common';
 
 const $ = jQuery;
 
@@ -138,11 +139,17 @@ export class FormSelect2Component extends BaseListControlComponent implements On
       });
     }
 
-    $(this.customSelectElement.nativeElement).val(this._selectedIndexes);
-    $(this.customSelectElement.nativeElement).trigger('change');
+    if (Common.isClient()) {
+      $(this.customSelectElement.nativeElement).val(this._selectedIndexes);
+      $(this.customSelectElement.nativeElement).trigger('change');
+    }
   }
 
   private updateSelectedIndexes() {
+    if (Common.isServer()) {
+      return;
+    }
+
     const oldSelectedIndexes = JSON.stringify(this._selectedIndexes);
     const value = $(this.customSelectElement.nativeElement).val();
 
@@ -160,6 +167,10 @@ export class FormSelect2Component extends BaseListControlComponent implements On
   }
 
   private selectValue(value) {
+    if (Common.isServer()) {
+      return;
+    }
+
     const index = this.findIndex(value);
 
     if (index > -1) {
@@ -172,13 +183,17 @@ export class FormSelect2Component extends BaseListControlComponent implements On
   }
 
   private cleanValue() {
+    if (Common.isServer()) {
+      return;
+    }
+
     this._selectedIndexes = [];
     $(this.customSelectElement.nativeElement).val(null);
     $(this.customSelectElement.nativeElement).trigger('change');
   }
 
   private updateSelect2Options() {
-    if (!this.customSelectElement || !this.customSelectElement.nativeElement) {
+    if (Common.isServer() || !this.customSelectElement || !this.customSelectElement.nativeElement) {
       return;
     }
 
