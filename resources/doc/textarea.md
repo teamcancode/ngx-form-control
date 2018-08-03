@@ -26,3 +26,4 @@ minlength | number | null
 maxlength | number | null
 trimResult | boolean | true | true: the string output will be trim.
 minLengthErrorMessage | string | 'Value is too short.' | Message display when length of output is less than min length
+customErrorMessages | array/string | [] | Customer error message

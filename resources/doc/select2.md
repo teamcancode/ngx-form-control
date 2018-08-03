@@ -28,3 +28,4 @@ valueKey | string | '' | Attribute of output value. If empty, the output will be
 comparedKey | string | ''
 options | Array<any> | [] | List all options
 multiple | boolean | false
+customErrorMessages | array/string | [] | Customer error message
