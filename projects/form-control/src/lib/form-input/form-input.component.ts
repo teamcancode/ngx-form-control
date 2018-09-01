@@ -31,6 +31,10 @@ export class FormInputComponent extends BaseControlComponent {
       return '';
     }
 
+    if ('string' !== typeof  this._innerValue) {
+      return this._innerValue;
+    }
+
     return this.trimResult ? this._innerValue.trim() : this._innerValue;
   }
 

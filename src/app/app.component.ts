@@ -11,6 +11,7 @@ export class AppComponent {
     email: '',
     password: 'temp',
     repeatPassword: 'temp',
+    age: 18,
     description: 'Hello Kitty',
     gender: 'm',
     skill: [{text: 'HTML', value: 2}, {text: 'CSS', value: 3}],
