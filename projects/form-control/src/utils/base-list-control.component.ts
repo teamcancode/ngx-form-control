@@ -1,5 +1,5 @@
-import { BaseControlComponent } from './base-control.component';
-import { Input } from '@angular/core';
+import {BaseControlComponent} from './base-control.component';
+import {Input} from '@angular/core';
 
 export abstract class BaseListControlComponent extends BaseControlComponent {
 
@@ -99,7 +99,7 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
       this._options.map((option, index) => {
         let text, value;
 
-        if ('string' === typeof option) {
+        if ('string' === typeof option || 'number' === typeof option) {
           text = option;
           value = option;
         } else {
@@ -138,7 +138,7 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
       return '';
     }
 
-    if ('string' === typeof option) {
+    if ('string' === typeof option || 'number' === typeof option) {
       return option;
     }
 
@@ -150,7 +150,7 @@ export abstract class BaseListControlComponent extends BaseControlComponent {
       value = this._valueKey ? option[this._valueKey] : option;
     }
 
-    if ('string' === typeof value) {
+    if ('string' === typeof value || 'number' === typeof value) {
       return value;
     }
 
