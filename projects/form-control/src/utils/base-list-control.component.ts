@@ -1,5 +1,5 @@
-import {BaseControlComponent} from './base-control.component';
-import {Input} from '@angular/core';
+import { BaseControlComponent } from './base-control.component';
+import { Input } from '@angular/core';
 
 export abstract class BaseListControlComponent extends BaseControlComponent {
 
