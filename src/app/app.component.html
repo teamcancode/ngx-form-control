@@ -78,21 +78,23 @@
     </div>
 
     <div class="form-group">
-      <ngx-form-select name="skill"
-                       label="Skills *"
-                       placeholder="Select your job skills"
-                       required="true"
-                       multiple="true"
-                       [options]="listSkill"
-                       [(ngModel)]="data.skill"></ngx-form-select>
+      <!--<ngx-form-select name="skill"-->
+                       <!--label="Skills *"-->
+                       <!--placeholder="Select your job skills"-->
+                       <!--required="true"-->
+                       <!--multiple="true"-->
+                       <!--[options]="listSkill"-->
+                       <!--[(ngModel)]="data.skill"></ngx-form-select>-->
     </div>
 
     <div class="form-group">
+      <p>{{data.skill|json}}</p>
       <ngx-form-select2 name="skill"
                         label="Skills *"
                         placeholder="Select your job skills"
                         required="true"
                         multiple="true"
+                        [tag]="true"
                         [options]="listSkill"
                         [(ngModel)]="data.skill"></ngx-form-select2>
     </div>
