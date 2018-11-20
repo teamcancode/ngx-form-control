@@ -171,20 +171,9 @@ export class FormSelect2Component extends BaseListControlComponent implements On
     if ('string' === typeof value || 'number' === typeof value) {
       this._selectedIndexes = [+value];
     } else if (this._selectedIndexes = value && value.length) {
-      // if (!this._tag) {
-      //   const max = this._options.length;
-      //
-      //   this._selectedIndexes = this._selectedIndexes.filter((item) => {
-      //     const index = +item;
-      //     return Number.isInteger(index) && index >= 0 && index < max;
-      //   });
-      // }
-
       this._selectedIndexes = value.map(item => {
-        console.log(222, item);
         return Number.isInteger(+item) ? +item : item;
       });
-      // this._selectedIndexes = [];
     } else {
       this._selectedIndexes = [];
     }
