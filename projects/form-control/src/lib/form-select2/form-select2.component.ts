@@ -1,7 +1,7 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BaseListControlComponent } from '../../utils/base-list-control.component';
-import { Common } from '../../utils/common';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {BaseListControlComponent} from '../../utils/base-list-control.component';
+import {Common} from '../../utils/common';
 
 declare const $;
 
@@ -22,8 +22,6 @@ export class FormSelect2Component extends BaseListControlComponent implements On
   private _isTouched = false;
 
   private _placeholder: string;
-
-  private _selectTagOptions = [];
 
   @Input() set placeholder(value: string) {
     this._placeholder = value;
@@ -68,14 +66,14 @@ export class FormSelect2Component extends BaseListControlComponent implements On
       return null;
     }
 
-    const result = this._selectedIndexes.reduce((result, index) => {
+    const result = this._selectedIndexes.reduce((currentResult, index) => {
       if (Number.isInteger(index) && this._selectOptions[index]) {
-        result.push(this._selectOptions[index].value);
+        currentResult.push(this._selectOptions[index].value);
       } else if (this._tag) {
-        result.push(index['value']);
+        currentResult.push(index['value']);
       }
 
-      return result;
+      return currentResult;
     }, []);
 
     return this._multiple ? result : result[0];
@@ -182,7 +180,7 @@ export class FormSelect2Component extends BaseListControlComponent implements On
     const oldSelectedIndexes = JSON.stringify(this._selectedIndexes);
     const value = this._selectElement.val();
 
-    if (Number.isInteger(+value)) {
+    if ('number' === typeof value || ('string' === typeof value && Number.isInteger(+value))) {
       this._selectedIndexes = [+value];
     } else if ('string' === typeof value && this._tag) {
       this._selectedIndexes = [{value}];
