@@ -9,8 +9,8 @@ export class AppComponent {
 
   data = {
     email: '',
-    password: 'temp',
-    repeatPassword: 'temp',
+    password: '',
+    repeatPassword: '',
     age: 18,
     description: 'Hello Kitty',
     gender: 'm',

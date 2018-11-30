@@ -1,6 +1,6 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors, } from '@angular/forms';
-import { BaseControlComponent } from '../../utils/base-control.component';
+import {Component, Input, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors,} from '@angular/forms';
+import {BaseControlComponent} from '../../utils/base-control.component';
 
 @Component({
   selector: 'ngx-form-input',
@@ -21,17 +21,23 @@ export class FormInputComponent extends BaseControlComponent {
   @Input() trimResult = true;
   @Input() minLengthErrorMessage = 'Value is too short.';
   @Input() patternErrorMessage = 'Value is not valid.';
-  @Input() match: string;
   @Input() matchErrorMessage = 'Value does not match.';
   @ViewChild('customInput') customInput: NgModel;
+
+  @Input() set match(value: string) {
+    this._match = value || '';
+    this.triggerChange();
+  }
+
   private _innerValue: string;
+  private _match;
 
   get value(): string {
     if (!this._innerValue) {
       return '';
     }
 
-    if ('string' !== typeof  this._innerValue) {
+    if ('string' !== typeof this._innerValue) {
       return this._innerValue;
     }
 
@@ -46,7 +52,7 @@ export class FormInputComponent extends BaseControlComponent {
   }
 
   get hasMatchError(): boolean {
-    return !!this.match && this.match !== this.value;
+    return !!this._match && this._match !== this.value;
   }
 
   get hasPatternError(): boolean {
