@@ -15,6 +15,7 @@
        [pattern]="pattern"
        [(ngModel)]="value"
        (input)="triggerChange()"
+       [autocomplete]="autocomplete ? 'on' : 'off'"
        #customInput="ngModel">
 
 <div class="valid-feedback" *ngIf="valid && validMessage">{{validMessage}}</div>

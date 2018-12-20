@@ -16,6 +16,7 @@ export class FormInputComponent extends BaseControlComponent {
   @Input() type = 'text';
   @Input() pattern = '';
   @Input() readonly = false;
+  @Input() autocomplete = false;
   @Input() minlength: number;
   @Input() maxlength: number;
   @Input() trimResult = true;
