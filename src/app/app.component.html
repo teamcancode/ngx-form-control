@@ -89,14 +89,12 @@
     </div>
 
     <div class="form-group">
-      {{data.skill|json}}
       <ngx-form-select2 name="skill"
                         label="Skills *"
                         placeholder="Select your job skills"
                         required="true"
                         multiple="true"
                         [options]="listSkill"
-                        [tag]="true"
                         [(ngModel)]="data.skill"></ngx-form-select2>
     </div>
 
