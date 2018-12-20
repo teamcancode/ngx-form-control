@@ -17,11 +17,10 @@ declare const $;
 export class FormSelect2Component extends BaseListControlComponent implements OnInit {
 
   private _selectElement;
+  private _isTouched = false;
+  private _placeholder: string;
 
   @ViewChild('customSelectElement') customSelectElement: ElementRef;
-  private _isTouched = false;
-
-  private _placeholder: string;
 
   @Input() set placeholder(value: string) {
     this._placeholder = value;
@@ -70,7 +69,13 @@ export class FormSelect2Component extends BaseListControlComponent implements On
       if (Number.isInteger(index) && this._selectOptions[index]) {
         currentResult.push(this._selectOptions[index].value);
       } else if (this._tag) {
-        currentResult.push(index['value']);
+        const match = index['value'].match(/^number: {([\d]+)}$/);
+
+        if (match) {
+          currentResult.push(match[1]);
+        } else {
+          currentResult.push(index['value']);
+        }
       }
 
       return currentResult;
@@ -256,6 +261,19 @@ export class FormSelect2Component extends BaseListControlComponent implements On
       multiple: this._multiple,
       data: this._selectOptions,
       disabled: this._disabled,
+      createTag: function (params) {
+        const term = $.trim(params.term);
+
+        if (term === '') {
+          return null;
+        }
+
+        return {
+          id: Number.isInteger(+term) ? `number: {${term}}` : term,
+          text: term,
+          newTag: true
+        };
+      }
     });
 
     this._selectElement.on('select2:select', () => {
