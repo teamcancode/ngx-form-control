@@ -33,9 +33,6 @@ export class FormInputComponent extends BaseControlComponent {
   @Output() focus = new EventEmitter<any>();
   @Output() blur = new EventEmitter<any>();
 
-  onChange;
-  onTouched;
-
   private _innerValue: string;
   private _match;
 
@@ -114,14 +111,6 @@ export class FormInputComponent extends BaseControlComponent {
     if (this.hasMinLengthError) {
       return [this.minLengthErrorMessage];
     }
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   writeValue(value: string): void {
