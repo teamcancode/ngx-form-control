@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -36,5 +36,13 @@ export class AppComponent {
     {text: 'C++', value: 9},
     {text: 'C#', value: 10},
   ];
+
+  onFocus(event) {
+    console.log('focus', event);
+  }
+
+  onBlur(event) {
+    console.log('blur', event);
+  }
 
 }

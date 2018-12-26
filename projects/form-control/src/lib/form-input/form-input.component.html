@@ -16,6 +16,8 @@
        [(ngModel)]="value"
        (input)="triggerChange()"
        [autocomplete]="autocomplete ? 'on' : 'off'"
+       (focus)="onFocus($event)"
+       (blur)="onBlur($event)"
        #customInput="ngModel">
 
 <div class="valid-feedback" *ngIf="valid && validMessage">{{validMessage}}</div>

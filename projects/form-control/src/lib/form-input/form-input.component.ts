@@ -1,5 +1,5 @@
-import {Component, Input, ViewChild} from '@angular/core';
-import {NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors,} from '@angular/forms';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors} from '@angular/forms';
 import {BaseControlComponent} from '../../utils/base-control.component';
 
 @Component({
@@ -29,6 +29,12 @@ export class FormInputComponent extends BaseControlComponent {
     this._match = value || '';
     this.triggerChange();
   }
+
+  @Output() focus = new EventEmitter<any>();
+  @Output() blur = new EventEmitter<any>();
+
+  onChange;
+  onTouched;
 
   private _innerValue: string;
   private _match;
@@ -110,6 +116,14 @@ export class FormInputComponent extends BaseControlComponent {
     }
   }
 
+  registerOnChange(fn) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn) {
+    this.onTouched = fn;
+  }
+
   writeValue(value: string): void {
     this._innerValue = value;
   }
@@ -133,6 +147,14 @@ export class FormInputComponent extends BaseControlComponent {
   // noinspection JSUnusedGlobalSymbols
   reset() {
     this.customInput.reset();
+  }
+
+  onFocus(event) {
+    this.focus.emit(event);
+  }
+
+  onBlur(event) {
+    this.blur.emit(event);
   }
 
 }

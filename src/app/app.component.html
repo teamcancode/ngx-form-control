@@ -8,6 +8,8 @@
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                       required="true"
                       [autocomplete]="false"
+                      (focus)="onFocus($event)"
+                      (blur)="onBlur($event)"
                       [(ngModel)]="data.email"></ngx-form-input>
     </div>
 
