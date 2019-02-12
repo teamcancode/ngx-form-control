@@ -35,3 +35,4 @@ valueKey | string | '' | Attribute of output value. If empty, the output will be
 options | Array<any> | [] | List all options
 type | string | 'checkbox' | Style of input: 'checkbox' or 'toggle'
 customErrorMessages | array/string | [] | Customer error message
+cleanCustomErrorMessageOnChanged | boolean | false | Clean custom error message when data is changed

@@ -1,6 +1,6 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors, } from '@angular/forms';
-import { BaseControlComponent } from '../../utils/base-control.component';
+import {Component, Input, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors,} from '@angular/forms';
+import {BaseControlComponent} from '../../utils/base-control.component';
 
 @Component({
   selector: 'ngx-form-textarea',
@@ -27,7 +27,7 @@ export class FormTextareaComponent extends BaseControlComponent {
       return '';
     }
 
-    if ('string' !== typeof  this._innerValue) {
+    if ('string' !== typeof this._innerValue) {
       return this._innerValue;
     }
 
@@ -70,16 +70,16 @@ export class FormTextareaComponent extends BaseControlComponent {
   }
 
   get errorMessages(): Array<string> {
-    if (this.hasCustomError) {
-      return this.innerCustomErrorMessages;
-    }
-
     if (this.hasRequiredError) {
       return [this.requiredErrorMessage];
     }
 
     if (this.hasMinLengthError) {
       return [this.minLengthErrorMessage];
+    }
+
+    if (this.hasCustomError) {
+      return this.innerCustomErrorMessages;
     }
   }
 

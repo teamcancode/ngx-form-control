@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors } from '@angular/forms';
-import { BaseListControlComponent } from '../../utils/base-list-control.component';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors} from '@angular/forms';
+import {BaseListControlComponent} from '../../utils/base-list-control.component';
 
 @Component({
   selector: 'ngx-form-select',
@@ -68,12 +68,12 @@ export class FormSelectComponent extends BaseListControlComponent {
   }
 
   get errorMessages(): Array<string> {
-    if (this.hasCustomError) {
-      return this.innerCustomErrorMessages;
-    }
-
     if (this.hasRequiredError) {
       return [this.requiredErrorMessage];
+    }
+
+    if (this.hasCustomError) {
+      return this.innerCustomErrorMessages;
     }
   }
 

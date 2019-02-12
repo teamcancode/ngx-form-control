@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { BaseControlComponent } from '../../utils/base-control.component';
+import {Component, Input} from '@angular/core';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
+import {BaseControlComponent} from '../../utils/base-control.component';
 
 @Component({
   selector: 'ngx-form-toggle',
@@ -52,12 +52,12 @@ export class FormToggleComponent extends BaseControlComponent {
   }
 
   get errorMessages(): Array<string> {
-    if (this.hasCustomError) {
-      return this.innerCustomErrorMessages;
-    }
-
     if (this.hasRequiredError) {
       return [this.requiredErrorMessage];
+    }
+
+    if (this.hasCustomError) {
+      return this.innerCustomErrorMessages;
     }
   }
 

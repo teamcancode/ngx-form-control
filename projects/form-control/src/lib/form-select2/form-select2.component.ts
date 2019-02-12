@@ -109,12 +109,12 @@ export class FormSelect2Component extends BaseListControlComponent implements On
   }
 
   get errorMessages(): Array<string> {
-    if (this.hasCustomError) {
-      return this.innerCustomErrorMessages;
-    }
-
     if (this.hasRequiredError) {
       return [this.requiredErrorMessage];
+    }
+
+    if (this.hasCustomError) {
+      return this.innerCustomErrorMessages;
     }
   }
 

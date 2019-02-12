@@ -92,10 +92,6 @@ export class FormInputComponent extends BaseControlComponent {
   }
 
   get errorMessages(): Array<string> {
-    if (this.hasCustomError) {
-      return this.innerCustomErrorMessages;
-    }
-
     if (this.hasRequiredError) {
       return [this.requiredErrorMessage];
     }
@@ -110,6 +106,10 @@ export class FormInputComponent extends BaseControlComponent {
 
     if (this.hasMinLengthError) {
       return [this.minLengthErrorMessage];
+    }
+
+    if (this.hasCustomError) {
+      return this.innerCustomErrorMessages;
     }
   }
 

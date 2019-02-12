@@ -29,5 +29,6 @@ comparedKey | string | ''
 options | Array<any> | [] | List all options
 multiple | boolean | false
 customErrorMessages | array/string | [] | Customer error message
+cleanCustomErrorMessageOnChanged | boolean | false | Clean custom error message when data is changed
 tag | boolean | false | https://select2.org/tagging
 tokenSeparators | Array | [] | https://select2.org/tagging

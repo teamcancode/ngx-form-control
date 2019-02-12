@@ -1,5 +1,5 @@
-import { ControlValueAccessor, ValidationErrors, Validator } from '@angular/forms';
-import { Input } from '@angular/core';
+import {ControlValueAccessor, ValidationErrors, Validator} from '@angular/forms';
+import {Input} from '@angular/core';
 
 export abstract class BaseControlComponent implements ControlValueAccessor, Validator {
 
@@ -14,6 +14,7 @@ export abstract class BaseControlComponent implements ControlValueAccessor, Vali
   @Input() disabled = false;
   @Input() validMessage = '';
   @Input() requiredErrorMessage = 'This field is required.';
+  @Input() cleanCustomErrorMessageOnChanged;
   protected _onTouchedCallback: () => void;
   protected _onChangeCallback: (_: any) => void;
 
@@ -48,7 +49,14 @@ export abstract class BaseControlComponent implements ControlValueAccessor, Vali
   abstract writeValue(value: any): void;
 
   registerOnChange(fn: any): void {
-    this._onChangeCallback = fn;
+    this._onChangeCallback = () => {
+      console.log(this.cleanCustomErrorMessageOnChanged);
+      if (this.cleanCustomErrorMessageOnChanged) {
+        this.innerCustomErrorMessages = [];
+      }
+
+      return fn;
+    };
   }
 
   registerOnTouched(fn: any): void {

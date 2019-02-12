@@ -54,5 +54,6 @@ patternErrorMessage | string | 'Value is not valid.' | Message display when outp
 match | string | null | The output must be same with this string. Example "repeat password" field will have attribute [match]="password"
 matchErrorMessage | string | 'Value is not match.' | Message display when output is different with match attribute
 customErrorMessages | array/string | [] | Customer error message
+cleanCustomErrorMessageOnChanged | boolean | false | Clean custom error message when data is changed
 focus | event
 blur | event

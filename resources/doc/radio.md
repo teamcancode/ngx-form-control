@@ -27,3 +27,4 @@ comparedKey | string | ''
 valueKey | string | '' | Attribute of output value. If empty, the output will be 1 option.
 options | Array<any> | [] | List all options
 customErrorMessages | array/string | [] | Customer error message
+cleanCustomErrorMessageOnChanged | boolean | false | Clean custom error message when data is changed
