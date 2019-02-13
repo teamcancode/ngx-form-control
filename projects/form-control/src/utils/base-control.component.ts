@@ -49,13 +49,12 @@ export abstract class BaseControlComponent implements ControlValueAccessor, Vali
   abstract writeValue(value: any): void;
 
   registerOnChange(fn: any): void {
-    this._onChangeCallback = () => {
-      console.log(this.cleanCustomErrorMessageOnChanged);
+    this._onChangeCallback = event => {
       if (this.cleanCustomErrorMessageOnChanged) {
         this.innerCustomErrorMessages = [];
       }
 
-      return fn;
+      return fn(event);
     };
   }
 
