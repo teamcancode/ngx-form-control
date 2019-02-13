@@ -43,7 +43,7 @@ export abstract class BaseControlComponent implements ControlValueAccessor, Vali
   }
 
   get hasRequiredError(): boolean {
-    return this.required && !this.value;
+    return this.required && this.value !== false && this.value !== 0 && !this.value;
   }
 
   abstract writeValue(value: any): void;
